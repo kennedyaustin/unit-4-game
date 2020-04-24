@@ -71,7 +71,7 @@ $('.borders').on('click', function() {
         // characterRow classes with _#
         $("._" + [i]).not(characterselect).appendTo("#Enemies" + [i]);
 
-        $("._" + [i]).not(characterselect).css({"background-color": "red", "border": "2px solid black", "min-height": "50%", "min-width": "100%"});
+        $("._" + [i]).not(characterselect).css({"background-color": "red", "border": "2px solid black", "min-height": "50%", "min-width": "100%"}).addClass("row no-gutters");
 
 
     }

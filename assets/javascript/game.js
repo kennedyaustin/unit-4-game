@@ -60,9 +60,17 @@ $('.borders').on('click', function() {
     // When the enemies move sections need to change background color and border color
     // This moves the character you chose to the Your Character Section
     if (characterselect == "") {	       
+
         $(this).appendTo('#chosenCharacter');
         characterselect = $(this);
+        // This will give a value to the variable chosenCharacter, since when I put a console.log
+        // inside and outside of this if statement it returned undefined
+        chosenCharacter= $(characterselect).attr("value")
+        console.log(chosenCharacter)
+        
     }
+
+
     for (var i = 0; i < 4; i++) {
 
         //https://stackoverflow.com/questions/55292906/what-does-in-javascript the link helped me figure out how to call
@@ -74,7 +82,6 @@ $('.borders').on('click', function() {
 
         $('._' + [i]).not(characterselect).css({'background-color': 'red', 'border': '2px solid black', 'min-height': '50%', 'min-width': '100%'});
 
-
     }
     
     // This if/ else if statement will load the characters stats into the game
@@ -82,21 +89,25 @@ $('.borders').on('click', function() {
 
         CharacterHP= characters.Anakin.HP;
         CharacterAtt= characters.Anakin.Att;
+        $('#Anakin').html(CharacterHP)
 
     } else if (chosenCharacter == characters.ObiWan.name) {
 
         CharacterHP= characters.ObiWan.HP;
         CharacterAtt= characters.ObiWan.Att;
+        $('#ObiWan').html(CharacterHP)
 
     } else if (chosenCharacter == characters.darthSidious.name) {
 
         CharacterHP= characters.darthSidious.HP;
         CharacterAtt= characters.darthSidious.Att;
+        $('#darthSidious').html(CharacterHP)
 
     } else if (chosenCharacter == characters.HighGround.name) {
 
         CharacterHP= characters.HighGround.HP;
         CharacterAtt= characters.HighGround.Att;
+        $('#highGround').html(CharacterHP)
 
     }
 
@@ -113,33 +124,41 @@ $('.move').on('click', function() {
     // This line of code will move the selected enemy Jedi to the Defender area of the website while also loading their stats
     $(this).appendTo('#DefendingJedi')
     DefJedi = $(this)
+    // The lines above and below this comment help assign the chooseDefender variable
+    // a value
+    chosenDefender= $(DefJedi).children().attr('value')
+    $('#Defeated').empty()
+    $('#NoEnemies').empty()
+    console.log(chosenDefender)
+
     if (chosenDefender == characters.ObiWan.name) {
 
         defenderHP= characters.ObiWan.HP
         defenderCounters= characters.ObiWan.defenderCounters
+        defenderName= characters.ObiWan.fullName
 
     } else if (chosenDefender == characters.Anakin) {
 
         defenderHP= characters.Anakin.HP
         defenderCounters= characters.Anakin.defenderCounters
+        defenderName= characters.Anakin.fullName
 
     } else if (chosenDefender == characters.darthSidious) {
 
         defenderHP= characters.darthSidious.HP
         defenderCounters= characters.darthSidious.defenderCounters
+        defenderName= characters.darthSidious.fullName
 
     } else if (chosenDefender == characters.HighGround) {
 
         defenderHP= characters.HighGround.HP
         defenderCounters= characters.HighGround.defenderCounters
+        defenderName= characters.HighGround.fullName
 
     }
 
-})
-
-
-
-
+    console.log(defenderHP)
+    console.log(defenderCounters)
 
 })
 
@@ -151,6 +170,36 @@ $('.move').on('click', function() {
     // Show message that the player has beaten their selected enemy
     // If no enemy is there, display the message that there's no one to attack
 //
+
+$('#AttackButton').on('click', function() {
+
+    // This line of code references the id DefendingJedi to see if there has been anything put into it
+    // if there hasn't then it will show the message below, when no one has been chosen the length will == 0
+    if ($('#DefendingJedi').children().length == 0) {
+
+        $('#NoEnemies').html('There is no enemy here at the time, please choose one from above.')
+
+    }
+
+    if (!(CharacterHP > 1) || !(defenderHP > 1)) {
+
+        // This will decrease the defending Jedi's HP
+        defenderHP = (defenderHP - CharacterAtt)
+        CharacterHP = (CharacterHP - defenderCounters)
+        // This will show the decrease in HP for the defender
+        $('.' + chosenDefender).html(defenderHP)
+        $('.' + chosenCharacter).html(CharacterHP)
+        // This is what will show when you attack a Jedi that is defending
+        $('#youAttacked').html('You attacked ' + defenderName + 'for ' + CharacterAtt + 'damage.')
+        $('#defenderAttackedBack').html(defenderName + ' attacked you back for ' + defenderCounters + ' damage.')
+
+    }
+
+})
+
+
+
+})
 
 // If all enemies have been defeated and charhp>1 the player wins
 // Clear the text from the fights and tell the player they won

@@ -25,42 +25,44 @@
 
         <div id= "characterRow" class= "row">
 
-            <div class= "col-sm-2 float borders _0" id="ObiWan">
+            <div class= "col-sm-2 float borders _0" value="ObiWan">
                 <p>Obi-Wan Kenobi</p>
                 <img id= "image1" src= "assets/images/ObiWan2.jpg">
-                <p>HP here</p>
+                <p id= "ObiWan"></p>
             </div>
 
-            <div class= "col-sm-2 float borders _1" id="Anakin">
+            <div class= "col-sm-2 float borders _1" value="Anakin">
                 <p>Anakin Skywalker</p>
                 <img id= "image2" src= "assets/images/anakin2.jpg">
-                <p>HP here</p>
+                <p id= "Anakin"></p>
             </div>
 
-            <div class= "col-sm-2 float borders _2" id="highGround">
+            <div class= "col-sm-2 float borders _2" value="highGround">
                 <p>The High Ground</p>
                 <img id= "image3" src= "assets/images/HighGround2.jpg">
-                <p>HP here</p>
+                <p id= "highGround"></p>
             </div>
             
-            <div class= "col-sm-2 float borders _3" id="darthSidious">
+            <div class= "col-sm-2 float borders _3" value="darthSidious">
                 <p>Darth Sidious</p>
                 <img id= "image4" src= "assets/images/darthSidious2.jpg">
-                <p>HP here</p>
+                <p id= "darthSidious"></p>
             </div>
 
         </div>
 
         <!-- This line holds the text "Your Character" -->
         <div class= "movingcontentLeft">
+
             <h4>Your Character</h4>
+
         </div>
 
         <!-- This line will hold the chosen character -->
         <div class= "movingcontentLeft">
-            <div id= "chosenCharacter">
 
-            </div>            
+            <div id= "chosenCharacter"></div> 
+
         </div>
 
         <!-- This line holds the text shown below in the h4 tag -->
@@ -71,36 +73,60 @@
         <!-- This line will hold the enemies, the other characters that weren't chosen
         as your character -->
         <div class= "row movingcontentLeft no-gutters">
+
             <div class= "col-md-3 move float-left" id= "Enemies0"></div>
             <div class= "col-md-3 move float-left" id= "Enemies1"></div>
             <div class= "col-md-3 move float-left" id= "Enemies2"></div>  
-            <div class= "col-md-3 move float-left" id= "Enemies3"></div>        
+            <div class= "col-md-3 move float-left" id= "Enemies3"></div>    
+
         </div>
 
         <!-- This line holds the text that shows the user where the combat
         controls will be held -->
         <div class= "movingcontentLeft">
+
             <h4>Fight Section</h4>
+
         </div>
 
         <!-- This is the attack button for the user to click on -->
         <div class= "movingcontentLeft">
+
             <div id="AttackButton">
                 <button>Attack</button>
             </div>
+
         </div>
 
         <!-- This is text for the current enemy -->
         <div class= "movingcontentLeft">
+
             <h4>Defender</h4>
+
         </div>
 
         <!-- This line will show the player which enemy they have chosen
         to attack -->
         <div class= "movingcontentLeft">
-            <div id="DefendingJedi">
 
+            <div id="DefendingJedi"></div>
+
+        </div>
+
+        <!-- This line will display the text of what happens when the user clicks on 
+        certain parts of the page as well as win/loss and damage -->
+        <div class= "moveTextleft">
+
+            <div class= "col-12">
+                <br>
+                <p id= "NoEnemies"></p>
+                <p id= "youAttacked"></p>
+                <p id= "defenderAttackedBack"></p>
+                <p id= "Defeated"></p>
+                <p id= "YouWin"></p>
+                <p id= "YouLose"></p>
             </div>
+
         </div>
 
 

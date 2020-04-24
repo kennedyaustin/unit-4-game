@@ -1,56 +1,98 @@
 // set some Global variables
-let attack;
-let CharacterAttack;
-let CharacterHP;
-let CharacterAttackVal;
-let defendingCharacter;
-let defendingCharacterHP;
-let defendingCharacterAttackVal;
+var attack;
+var defend;
+var attackcharacter;
+var CharacterHP;
+var CharacterAtt;
+var defendcharacter;
+var defenderHP;
+var defenderAP;
+var defenderCAP;
+var name;
+var chosenCharacter;
+var YourDefender;
+var myChar = "";
+var myDef = "";
 
 // An object to hold all of the stats for the characters so that they're easier to 
 // reference in jQuery
-let characters= {
+var characters = { 
 
-    Anakin: {
-        divName: "Anakin",
-        Name: "Anakin Skywalker",
-        visual: "../images/anakin.jpg",
-        HP: 100,
-        attackingPower: 10,
-        counter: 5
-    },
-    ObiWan: {
-        divName: "ObiWan",
-        Name: "Obi-Wan Kenobi",
-        visual: "../images/obi-wan.jpg",
-        HP: 120,
-        attackingPower: 8,
-        counter: 15
-    },
-    DarthSidious: {
-        divName: "darthSidious",
-        Name: "Darth Sidious",
-        visual: "../images/darthSidious.jpg",
-        HP: 150,
-        attackingPower: 5,
-        counter: 20
-    },
-    highGround: {
-        divName: "highGround",
-        Name: "I HAVE THE HIGH GROUND ANAKIN",
-        visual: "../images/highGround.jpg",
-        HP: 180,
-        attackingPower: 5,
-        counter: 25
-    }
-}
+	Anakin: {
+		name: "Anakin",
+		visual: '../images/anakin.jpg',
+		HP: 100,
+		Att: 10,
+		fullName: "Anakin Skywalker",
+		counterAttackPower: 5
+	},
+
+	ObiWan:{
+		name: "ObiWan",
+		visual: '../images/obi-wan.jpg',
+		HP: 120,
+		Att: 8,
+		fullName: "Obi-Wan Kenobi",
+		counterAttackPower: 12
+	},
+
+	darthSidious:{ 
+		name: "darthSidious",
+		visual: '../images/darthSidious.jpg',
+		HP: 150,
+		Att: 10,
+		fullName: "Darth Sideous",
+		counterAttackPower: 20
+	},
+
+	HighGround:{ 
+		name: "highGround",
+		visual: '../images/highGround.jpg',
+		HP: 180,
+		Att: 12,
+		fullName: "DON'T DO IT ANAKIN, I HAVE THE HIGH GROUND",
+		counterAttackPower: 25
+	}
+};
 
 $(document).ready(function() {
 
 // When the player clicks on one of the characters, the site will take whichever character
 // was chosen and move it to the Your Character section while moving the other 3 into the 
 // Enemies section
+$(".borders").on("click", function() {
 
+    // This moves the character you chose to the Your Character Section
+    if (myChar === "") {
+
+        $(this).appendTo("#chosenCharacter")
+
+    }
+
+    // This if/ else if statement will load the characters stats into the game
+    if (chosenCharacter == characters.Anakin.name) {
+
+        CharacterHP= characters.Anakin.HP;
+        CharacterAtt= characters.Anakin.Att;
+
+    } else if (chosenCharacter == characters.ObiWan.name) {
+
+        CharacterHP= characters.ObiWan.HP;
+        CharacterAtt= characters.ObiWan.Att;
+
+    } else if (chosenCharacter == characters.darthSidious.name) {
+
+        CharacterHP= characters.darthSidious.HP;
+        CharacterAtt= characters.darthSidious.Att;
+
+    } else if (chosenCharacter == characters.HighGround.name) {
+
+        CharacterHP= characters.HighGround.HP;
+        CharacterAtt= characters.HighGround.Att;
+
+    }
+
+})
 
 })
 

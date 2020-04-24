@@ -1,13 +1,10 @@
 // set some Global variables
-var attack;
-var defend;
 var attackcharacter;
 var CharacterHP;
 var CharacterAtt;
 var defendcharacter;
 var defenderHP;
-var defenderAP;
-var defenderCAP;
+var defenderAtt
 var name;
 var chosenCharacter;
 var YourDefender;
@@ -64,9 +61,9 @@ $('.borders').on('click', function() {
 
     // This moves the character you chose to the Your Character Section
     if (characterselect == "") {
-
-        $(this).appendTo('#chosenCharacter');
-
+        // appends the chosen character to "Your Character"      
+        $(this).appendTo("#chosenCharacter");
+        
     }
 
     // This if/ else if statement will load the characters stats into the game
@@ -94,7 +91,15 @@ $('.borders').on('click', function() {
 
     // This will move the other characters not chosen to the Enemies section on the screen
     // as well as change their background color to red
-    
+    for (var i = 0; i < 4; i++) {
+        $("._" + [i]).not(characterselect).appendTo("#Enemies" + [i]);
+
+        // changing color
+        $("._" + [i]).not(characterselect).css({"background-color": "red", "outline-color": "black", 
+            "border-width": "3px", "outline-style": "solid", "border-color": "black", "outline-width": "1px"});
+
+
+    }
 
     // After the user picks a character all the others will disappear
     $('#characterRow').hide();

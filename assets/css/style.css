@@ -1,0 +1,29 @@
+body {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
+
+p {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+}
+
+#rpgTitle {
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+/* #characterRow {
+    height: 10px !important;
+} */
+
+#image1, #image2, #image3, #image4 {
+    height: 50%;
+    width: 100%;
+}
+
+.borders {
+    border: 2px solid limegreen;
+    background-color: white;
+}

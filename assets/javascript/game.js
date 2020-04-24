@@ -16,38 +16,38 @@ var myDef = "";
 var characters = { 
 
 	Anakin: {
-		name: 'Anakin',
+        name: 'Anakin',
+        fullName: 'Anakin Skywalker',
 		visual: '../images/anakin.jpg',
 		HP: 100,
 		Att: 10,
-		fullName: 'Anakin Skywalker',
 		counterAttackPower: 5
 	},
 
 	ObiWan:{
-		name: 'ObiWan',
+        name: 'ObiWan',
+        fullName: 'Obi-Wan Kenobi',
 		visual: '../images/obi-wan.jpg',
 		HP: 120,
 		Att: 8,
-		fullName: 'Obi-Wan Kenobi',
 		counterAttackPower: 12
 	},
 
 	darthSidious:{ 
-		name: 'darthSidious',
+        name: 'darthSidious',
+        fullName: 'Darth Sideous',
 		visual: '../images/darthSidious.jpg',
 		HP: 150,
 		Att: 10,
-		fullName: 'Darth Sideous',
 		counterAttackPower: 20
 	},
 
 	HighGround:{ 
-		name: 'highGround',
+        name: 'highGround',
+        fullName: 'DON\'T DO IT ANAKIN, I HAVE THE HIGHGROUND',
 		visual: '../images/highGround.jpg',
 		HP: 180,
 		Att: 12,
-		fullName: 'DON\'T DO IT ANAKIN, I HAVE THE HIGH GROUND',
 		counterAttackPower: 25
 	}
 };
@@ -60,12 +60,22 @@ $(document).ready(function() {
 $('.borders').on('click', function() {
 
     // This moves the character you chose to the Your Character Section
-    if (characterselect == "") {
-        // appends the chosen character to "Your Character"      
+    if (characterselect == "") {	       
         $(this).appendTo("#chosenCharacter");
-        
+        characterselect = $(this);
     }
+    for (var i = 0; i < 4; i++) {
 
+        //https://stackoverflow.com/questions/55292906/what-does-in-javascript the link helped me figure out how to call
+        // it, the ._ will call the borders object and add the number of loops i onto the number I have in each of my 
+        // characterRow classes with _#
+        $("._" + [i]).not(characterselect).appendTo("#Enemies" + [i]);
+
+        $("._" + [i]).not(characterselect).css({"background-color": "red", "border": "2px solid black", "min-height": "50%", "min-width": "100%"});
+
+
+    }
+    
     // This if/ else if statement will load the characters stats into the game
     if (chosenCharacter == characters.Anakin.name) {
 
@@ -91,15 +101,6 @@ $('.borders').on('click', function() {
 
     // This will move the other characters not chosen to the Enemies section on the screen
     // as well as change their background color to red
-    for (var i = 0; i < 4; i++) {
-        $("._" + [i]).not(characterselect).appendTo("#Enemies" + [i]);
-
-        // changing color
-        $("._" + [i]).not(characterselect).css({"background-color": "red", "outline-color": "black", 
-            "border-width": "3px", "outline-style": "solid", "border-color": "black", "outline-width": "1px"});
-
-
-    }
 
     // After the user picks a character all the others will disappear
     $('#characterRow').hide();

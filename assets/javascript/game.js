@@ -1,15 +1,13 @@
 // set some Global variables
-var attackcharacter;
 var CharacterHP;
 var CharacterAtt;
-var defendcharacter;
 var defenderHP;
-var defenderAtt
+var defenderCounters;
 var name;
 var chosenCharacter;
-var YourDefender;
+var chosenDefender;
 var characterselect = "";
-var myDef = "";
+var DefJedi = "";
 
 // An object to hold all of the stats for the characters so that they're easier to 
 // reference in jQuery
@@ -21,7 +19,7 @@ var characters = {
 		visual: '../images/anakin.jpg',
 		HP: 100,
 		Att: 10,
-		counterAttackPower: 5
+		defenderCounters: 5
 	},
 
 	ObiWan:{
@@ -30,7 +28,7 @@ var characters = {
 		visual: '../images/obi-wan.jpg',
 		HP: 120,
 		Att: 8,
-		counterAttackPower: 12
+		defenderCounters: 12
 	},
 
 	darthSidious:{ 
@@ -39,7 +37,7 @@ var characters = {
 		visual: '../images/darthSidious.jpg',
 		HP: 150,
 		Att: 10,
-		counterAttackPower: 20
+		defenderCounters: 20
 	},
 
 	HighGround:{ 
@@ -48,7 +46,7 @@ var characters = {
 		visual: '../images/highGround.jpg',
 		HP: 180,
 		Att: 12,
-		counterAttackPower: 25
+		defenderCounters: 25
 	}
 };
 
@@ -59,9 +57,10 @@ $(document).ready(function() {
 // Enemies section
 $('.borders').on('click', function() {
 
+    // When the enemies move sections need to change background color and border color
     // This moves the character you chose to the Your Character Section
     if (characterselect == "") {	       
-        $(this).appendTo("#chosenCharacter");
+        $(this).appendTo('#chosenCharacter');
         characterselect = $(this);
     }
     for (var i = 0; i < 4; i++) {
@@ -69,9 +68,11 @@ $('.borders').on('click', function() {
         //https://stackoverflow.com/questions/55292906/what-does-in-javascript the link helped me figure out how to call
         // it, the ._ will call the borders object and add the number of loops i onto the number I have in each of my 
         // characterRow classes with _#
-        $("._" + [i]).not(characterselect).appendTo("#Enemies" + [i]);
+        // This will move the other characters not chosen to the Enemies section on the screen
+        // as well as change their background color to red
+        $('._' + [i]).not(characterselect).appendTo('#Enemies' + [i]);
 
-        $("._" + [i]).not(characterselect).css({"background-color": "red", "border": "2px solid black", "min-height": "50%", "min-width": "100%"}).addClass("row no-gutters");
+        $('._' + [i]).not(characterselect).css({'background-color': 'red', 'border': '2px solid black', 'min-height': '50%', 'min-width': '100%'});
 
 
     }
@@ -99,22 +100,48 @@ $('.borders').on('click', function() {
 
     }
 
-    // This will move the other characters not chosen to the Enemies section on the screen
-    // as well as change their background color to red
-
+    // Clear the character select section
     // After the user picks a character all the others will disappear
     $('#characterRow').hide();
 
 })
 
-})
-
-// When the enemies move sections need to change background color and border color
-
-// Clear the character select section
-
 // If a player clicks on one of the enemies in the Enemies section it will move the chosen
 // enemy and move them to the Defender section, other characters stay in their section
+$('.move').on('click', function() {
+
+    // This line of code will move the selected enemy Jedi to the Defender area of the website while also loading their stats
+    $(this).appendTo('#DefendingJedi')
+    DefJedi = $(this)
+    if (chosenDefender == characters.ObiWan.name) {
+
+        defenderHP= characters.ObiWan.HP
+        defenderCounters= characters.ObiWan.defenderCounters
+
+    } else if (chosenDefender == characters.Anakin) {
+
+        defenderHP= characters.Anakin.HP
+        defenderCounters= characters.Anakin.defenderCounters
+
+    } else if (chosenDefender == characters.darthSidious) {
+
+        defenderHP= characters.darthSidious.HP
+        defenderCounters= characters.darthSidious.defenderCounters
+
+    } else if (chosenDefender == characters.HighGround) {
+
+        defenderHP= characters.HighGround.HP
+        defenderCounters= characters.HighGround.defenderCounters
+
+    }
+
+})
+
+
+
+
+
+})
 
 // Code the attack button
     // As you attack more, CharAtt goes up

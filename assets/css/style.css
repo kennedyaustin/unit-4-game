@@ -9,6 +9,11 @@ p {
     font-size: 15px;
 }
 
+h4 {
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
 #rpgTitle {
     font-family: 'Roboto Mono', monospace;
     color: white;
@@ -26,4 +31,8 @@ p {
 .borders {
     border: 2px solid limegreen;
     background-color: white;
+}
+
+.movingcontentLeft {
+    margin-left: -15px;
 }

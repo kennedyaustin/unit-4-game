@@ -11,7 +11,7 @@ var defenderCAP;
 var name;
 var chosenCharacter;
 var YourDefender;
-var myChar = "";
+var characterselect = "";
 var myDef = "";
 
 // An object to hold all of the stats for the characters so that they're easier to 
@@ -19,38 +19,38 @@ var myDef = "";
 var characters = { 
 
 	Anakin: {
-		name: "Anakin",
+		name: 'Anakin',
 		visual: '../images/anakin.jpg',
 		HP: 100,
 		Att: 10,
-		fullName: "Anakin Skywalker",
+		fullName: 'Anakin Skywalker',
 		counterAttackPower: 5
 	},
 
 	ObiWan:{
-		name: "ObiWan",
+		name: 'ObiWan',
 		visual: '../images/obi-wan.jpg',
 		HP: 120,
 		Att: 8,
-		fullName: "Obi-Wan Kenobi",
+		fullName: 'Obi-Wan Kenobi',
 		counterAttackPower: 12
 	},
 
 	darthSidious:{ 
-		name: "darthSidious",
+		name: 'darthSidious',
 		visual: '../images/darthSidious.jpg',
 		HP: 150,
 		Att: 10,
-		fullName: "Darth Sideous",
+		fullName: 'Darth Sideous',
 		counterAttackPower: 20
 	},
 
 	HighGround:{ 
-		name: "highGround",
+		name: 'highGround',
 		visual: '../images/highGround.jpg',
 		HP: 180,
 		Att: 12,
-		fullName: "DON'T DO IT ANAKIN, I HAVE THE HIGH GROUND",
+		fullName: 'DON\'T DO IT ANAKIN, I HAVE THE HIGH GROUND',
 		counterAttackPower: 25
 	}
 };
@@ -60,12 +60,12 @@ $(document).ready(function() {
 // When the player clicks on one of the characters, the site will take whichever character
 // was chosen and move it to the Your Character section while moving the other 3 into the 
 // Enemies section
-$(".borders").on("click", function() {
+$('.borders').on('click', function() {
 
     // This moves the character you chose to the Your Character Section
-    if (myChar === "") {
+    if (characterselect == "") {
 
-        $(this).appendTo("#chosenCharacter")
+        $(this).appendTo('#chosenCharacter');
 
     }
 
@@ -91,6 +91,13 @@ $(".borders").on("click", function() {
         CharacterAtt= characters.HighGround.Att;
 
     }
+
+    // This will move the other characters not chosen to the Enemies section on the screen
+    // as well as change their background color to red
+    
+
+    // After the user picks a character all the others will disappear
+    $('#characterRow').hide();
 
 })
 

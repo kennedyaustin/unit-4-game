@@ -48,18 +48,15 @@ $(document).ready(function() {
 
 	function gameReset(myRandNumb) {
 
-		crystalNumbers = []; // clears crystal number values
-
-		pickArandomNumber(randomNumber);
-
-		pickRandomcrystalValue(crystals);
-
-		crystalValues(crystalNumbers);
-
+		crystalNumbers = [];
 		totalScore = 0;
-		$("#totalNumber").html(totalScore);
+		$("#totalNumber").html(totalScore); 
+		pickArandomNumber(randomNumber);
+		pickRandomcrystalValue(crystals);
+		crystalValues(crystalNumbers);
+		$("#text").html("")
+		$("button").attr("disabled", false)
 
-		alert(myRandNumb);
 	} 
 	
 	// This is a for loop that will hold the numbers 19-120, empty numberArray until the loops occurs
@@ -80,59 +77,73 @@ $(document).ready(function() {
 
 	}
 
+	// These are just calling all of the functions
 	pickArandomNumber(randomNumber); 
 	pickRandomcrystalValue(crystals); 
 	crystalValues(crystalNumbers);
 
-		// crystal button functions
+	// These 4 onclick functions make all of the buttons that the gems are a part of
+	// functional
+	$("#purplegem").on("click", function() {
 
-		$("#purplegem").on("click", function() {
+		// When the purplegem button is clicked, totalScore starts at 0 and increases by the
+		// random number assigned to the gem
+		totalScore = purplegem + totalScore;
+		// The totalNumber is the score that is shown to the player, and is replaced by the 
+		// totalScore as buttons are pressed
+		$("#totalNumber").html(totalScore);
 
-			totalScore = purplegem + totalScore;
-			$("#totalNumber").html(totalScore);
+	});
 
-		});
+	$("#bluegem").on("click", function() {
 
-		$("#bluegem").on("click", function() {
+		totalScore = bluegem + totalScore;
+		$("#totalNumber").html(totalScore);
 
-			totalScore = bluegem + totalScore;
-			$("#totalNumber").html(totalScore);
+	});
 
-		});
+	$("#greengem").on("click", function() {
 
-		$("#greengem").on("click", function() {
+		totalScore = greengem + totalScore;
+		$("#totalNumber").html(totalScore);
 
-			totalScore = greengem + totalScore;
-			$("#totalNumber").html(totalScore);
+	});
 
-		});
+	$("#redgem").on("click", function() {
 
-		$("#redgem").on("click", function() {
+		totalScore = redgem + totalScore;
+		$("#totalNumber").html(totalScore);
 
-			totalScore = redgem + totalScore;
-			$("#totalNumber").html(totalScore);
+	});
 
-		});
-
+	// This onclick function applies to every button on the page
 	$("button").on("click", function() {
 		
+		// This is the winning condition, if the player is able to match their score with the
+		// randNumber generated they win and then the reset function is called
 		if (totalScore == randNumber) {
 
 			wins++;
 			console.log(totalScore);
 			$("#totalNumber").html(totalScore);
 			$("#wins").html("Wins: " + wins);
-			setTimeout(function() {gameReset("You won!")}, 500);
+			$("#text").html("You won!")
+			$("button").attr("disabled", true)
+			setTimeout(function() {gameReset()}, 1500);
 
 		} else if (totalScore > randNumber){
 
+			// This is the losing condition, if the player goes over the totalScore with the gems
+			// then all of this will happen
 			losses++;
 			$("#totalNumber").html(totalScore);
 			$("#losses").html("Losses: " + losses);
-			setTimeout(function() {gameReset("Aww, you lost!")},500);
+			$("#text").html("You lost! ):")
+			$("button").attr("disabled", true)
+			setTimeout(function() {gameReset()}, 1500);
 
 		}
 
 	});
 
-}); // end of script
+});

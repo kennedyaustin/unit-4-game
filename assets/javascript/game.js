@@ -46,15 +46,19 @@ $(document).ready(function() {
 
 	} 
 
+	// This function just resets everything back to where it was initially
 	function gameReset(myRandNumb) {
 
 		crystalNumbers = [];
 		totalScore = 0;
 		$("#totalNumber").html(totalScore); 
+		// These 3 functions will get and create new random numbers
 		pickArandomNumber(randomNumber);
 		pickRandomcrystalValue(crystals);
 		crystalValues(crystalNumbers);
+		// This will clear the text that tells the user whether or not they won or lost
 		$("#text").html("")
+		// This will re-enable the buttons for the users use
 		$("button").attr("disabled", false)
 
 	} 

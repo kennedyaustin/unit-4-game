@@ -1,151 +1,138 @@
 $(document).ready(function() {
 
-	// ******* NUMBER ARRAYS *******
+	// A few of my global variables
+	let purplegem;
+	let bluegem;
+	let greengem;
+	let redgem;
+	let totalScore = 0; 
+	let wins = 0;
+	let losses = 0;
 
-	// random computer variable array
-	var rand = [];
+	function pickArandomNumber(numberArray) {
 
-	for (var r = 19; r < 121; r++) {
-		rand.push(r);
-	}
-
-	// crystal numbers array
-	var crystals = [];
-
-	for (var c = 1; c < 13; c++) {
-
-		crystals.push(c);
-	}
-
-	// console.log(crystals);
-
-	// ******* GLOBAL VARIABLES *******
-
-	// random variables selected by computer
-	var randNumber; // number to match
-	var crystalNumbers = []; // for array of random crystal values
-
-	var c1;
-	var c2;
-	var c3;
-	var c4;
-
-  var totalScore = 0; // user's score
-
-	var wins = 0;
-	var losses = 0;
-
-	// ******* FUNCTIONS *******
-
-	// pick a random number
-	function pickRandomNumber(arr) {
-
-		var x = arr[Math.floor(Math.random() * arr.length)];
-		randNumber = x;
+		// This function will pick a random number along the length of the numberArray that's put into it
+		let myRandNumb = numberArray[Math.floor(Math.random() * numberArray.length)];
+		// This is putting the random number chosen into the variable randNumber
+		randNumber = myRandNumb;
+		// This will put the random number that's chosen in place of the "0" placeholder I have
 		$("#randomNumber").html(randNumber);
 
-		console.log("random number: " + randNumber);
+	} 
 
-	} // END of pickRandomNumber function
+	let crystalNumbers = [];
+	function pickRandomcrystalValue(numberArray) {
 
-	// pick random numbers for crystals
+		// This function and for loop is creating 4 random numbers to push into the array above
+		for (let k = 0; k < 4; k++){
 
-	function pickRandomCrystals(arr) {
+			let randomCrystalNumber = numberArray[Math.floor(Math.random() * numberArray.length)];
+			// This pushes the value chosen by the "random number gen" above into the empty crystalNumbers
+			// array outside of this function 
+			crystalNumbers.push(randomCrystalNumber);
 
-		for (var y = 0; y < 4; y++){
-
-			var a = arr[Math.floor(Math.random() * arr.length)];
-
-			crystalNumbers.push(a);
 		}
-    // check which numbers have been picked
-		console.log("crystal numbers: " + crystalNumbers);
 
-	} // END of pickRandomCrystals function
+	} 
 
-	function crystalValues(arr) {
+	function crystalValues(numberArray) {
 
-		// change value of each crystal button according to array
-		for (i = 0; i < arr.length; i++) {
+		// This function will give each of the gem buttons their own random value
+		// that corresponds with the position of the array specified, in this case, crystalNumbers
+		purplegem = numberArray[0];
+		bluegem = numberArray[1];
+		greengem = numberArray[2];
+		redgem = numberArray[3];
 
-		$("#button-" + (i+1)).attr("value", arr[i]);
-		console.log(this);
-		}
-		c1 = arr[0];
-		c2 = arr[1];
-		c3 = arr[2];
-		c4 = arr[3];
-	} // END of crystalValues function
+	} 
 
-	function gameReset(x) {
+	function gameReset(myRandNumb) {
 
 		crystalNumbers = []; // clears crystal number values
 
-		pickRandomNumber(rand);
+		pickArandomNumber(randomNumber);
 
-		pickRandomCrystals(crystals);
+		pickRandomcrystalValue(crystals);
 
 		crystalValues(crystalNumbers);
 
 		totalScore = 0;
 		$("#totalNumber").html(totalScore);
 
-		alert(x);
-	} // END of gameReset function
+		alert(myRandNumb);
+	} 
+	
+	// This is a for loop that will hold the numbers 19-120, empty numberArray until the loops occurs
+	let randomNumber = [];
+	for (let i = 19; i < 121; i++) {
+		
+		// This will push the number into the randomNumber numberArray
+		randomNumber.push(i);
 
-	// *** GAME SETTINGS AT START ***
+	}
 
-	pickRandomNumber(rand); // random number to match
-	pickRandomCrystals(crystals); // array of random crystal values
+	// This is a for loop that will hold the number 1-12, empty numberArray at first
+	let crystals = [];
+	for (let j = 1; j < 13; j++) {
+
+		// This pushes the numbers 1-12 into the empty crystal numberArray
+		crystals.push(j);
+
+	}
+
+	pickArandomNumber(randomNumber); 
+	pickRandomcrystalValue(crystals); 
 	crystalValues(crystalNumbers);
 
 		// crystal button functions
 
 		$("#purplegem").on("click", function() {
 
-			totalScore += c1;
+			totalScore = purplegem + totalScore;
 			$("#totalNumber").html(totalScore);
+
 		});
 
 		$("#bluegem").on("click", function() {
 
-			totalScore += c2;
+			totalScore = bluegem + totalScore;
 			$("#totalNumber").html(totalScore);
+
 		});
 
 		$("#greengem").on("click", function() {
 
-			totalScore += c3;
+			totalScore = greengem + totalScore;
 			$("#totalNumber").html(totalScore);
+
 		});
 
 		$("#redgem").on("click", function() {
 
-			totalScore += c4;
+			totalScore = redgem + totalScore;
 			$("#totalNumber").html(totalScore);
+
 		});
 
 	$("button").on("click", function() {
-		// this is what happens if the user wins
+		
 		if (totalScore == randNumber) {
 
 			wins++;
 			console.log(totalScore);
 			$("#totalNumber").html(totalScore);
 			$("#wins").html("Wins: " + wins);
+			setTimeout(function() {gameReset("You won!")}, 500);
 
-
-			setTimeout(function() {gameReset("YOU WIN!!")}, 200);
-		}
-
-		else if (totalScore > randNumber){
+		} else if (totalScore > randNumber){
 
 			losses++;
 			$("#totalNumber").html(totalScore);
 			$("#losses").html("Losses: " + losses);
+			setTimeout(function() {gameReset("Aww, you lost!")},500);
 
-			setTimeout(function() {gameReset("WOMP-WOMP...YOU LOSE!")}, 200);
 		}
+
 	});
 
 }); // end of script

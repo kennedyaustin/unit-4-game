@@ -1,0 +1,61 @@
+body {
+    background-image: url(../images/backgroundPic.png);
+    background-size: cover;
+}
+
+#titleBox {
+    position: relative;
+    height: auto;
+    padding: 10px 0 10px 0;
+    width: 350px;
+    background-color: chocolate;
+    color: white;
+    margin-top: 10px;
+}
+
+.jumbotron {
+    overflow: hidden;
+    background-color: tan;
+    color: green;
+    font-weight: bold;
+    width: 50%;
+    margin-top: 15px;
+}
+
+#randNumberBox {
+    padding-left: 10px;
+    background-color: greenyellow;
+    width: 250px;
+    height: 150px;
+}
+
+#winLoss {
+    padding-left: 10px;
+    position: relative;
+    background-color: turquoise;
+    width: 200px;
+    height: 150px;
+    left: 270px;
+    top: -150px;
+}
+
+#buttons {
+    position: relative;
+    top: -130px;
+    right: 33px;
+}
+
+#score {
+    background-color: teal;
+    color: white;
+    top: -100px;
+    width: 200px;
+}
+
+#totalScore {
+    background-color: teal;
+    color: white;
+    top: -90px;
+    width: 200px;
+    height: auto;
+}

@@ -17,6 +17,84 @@ let wins= 0;
 let losses= 0;
 let totalScore= 0;
 
+// This will overwrite the text in the id totalScore with what is given in the variable
+// totalScore
+$('#totalScore').html(totalScore)
 
+
+// These on click functions will make it so the if the total score = the random number generated
+// by the RNGenerator then it will run a function called win and reset the game
+$('#purplegem').on('click', function() {
+
+    totalScore= totalScore + purplegem;
+    $('#totalScore').html(totalScore);
+    if (totalScore === randomNumber) {
+
+        win();
+        resetGame();
+
+    } else if (totalScore > randomNumber) {
+
+        // Otherwise, if the number goes over the random number, they will lose the game
+        loss();
+        reset();
+
+    }
+
+})
+
+$('#bluegem').on('click', function() {
+
+    totalScore= totalScore + bluegem;
+    $('#totalScore').html(totalScore);
+    if (totalScore === randomNumber) {
+
+        win();
+        resetGame();
+
+    } else if (totalScore > randomNumber) {
+
+        loss();
+        reset();
+
+    }
+
+})
+
+$('#greengem').on('click', function() {
+
+    totalScore= totalScore + greengem;
+    $('#totalScore').html(totalScore);
+    if (totalScore === randomNumber) {
+
+        win();
+        resetGame();
+
+    } else if (totalScore > randomNumber) {
+
+        loss();
+        reset();
+
+    }
+
+})
+
+$('#redgem').on('click', function() {
+
+    totalScore= totalScore + redgem;
+    $('#totalScore').html(totalScore);
+    if (totalScore === randomNumber) {
+
+        win();
+        resetGame();
+
+    } else if (totalScore > randomNumber) {
+
+        loss();
+        reset();
+
+    }
+
+})
 
 })

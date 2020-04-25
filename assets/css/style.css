@@ -27,6 +27,8 @@ body {
     background-color: greenyellow;
     width: 250px;
     height: 150px;
+    font-size: 25px;
+    color: purple;
 }
 
 #winLoss {
@@ -52,7 +54,7 @@ body {
     width: 200px;
 }
 
-#totalScore {
+#totalNumber {
     background-color: teal;
     color: white;
     top: -90px;

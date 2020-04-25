@@ -1,100 +1,151 @@
 $(document).ready(function() {
 
-// Start with a random number 19-120
-// https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript 
-// helped me get the the random number gen for 19-120
-//                Math.floor(Math.random() * (max - min +1) + min);
-let randomNumber= Math.floor(Math.random() * (120 - 19 + 1) + 19);
+	// ******* NUMBER ARRAYS *******
 
-// Each crystal will also have its own random number 1-12
-let purplegem= Math.floor(Math.random() * 12) + 1;
-let bluegem= Math.floor(Math.random() * 12) + 1;
-let greengem= Math.floor(Math.random() * 12) + 1;
-let redgem= Math.floor(Math.random() * 12) + 1;
+	// random computer variable array
+	var rand = [];
 
-// Defining global variables for wins and losses
-let wins= 0;
-let losses= 0;
-let totalScore= 0;
+	for (var r = 19; r < 121; r++) {
+		rand.push(r);
+	}
 
-// This will overwrite the text in the id totalScore with what is given in the variable
-// totalScore
-$('#totalScore').html(totalScore)
+	// crystal numbers array
+	var crystals = [];
+
+	for (var c = 1; c < 13; c++) {
+
+		crystals.push(c);
+	}
+
+	// console.log(crystals);
+
+	// ******* GLOBAL VARIABLES *******
+
+	// random variables selected by computer
+	var randNumber; // number to match
+	var crystalNumbers = []; // for array of random crystal values
+
+	var c1;
+	var c2;
+	var c3;
+	var c4;
+
+  var totalScore = 0; // user's score
+
+	var wins = 0;
+	var losses = 0;
+
+	// ******* FUNCTIONS *******
+
+	// pick a random number
+	function pickRandomNumber(arr) {
+
+		var x = arr[Math.floor(Math.random() * arr.length)];
+		randNumber = x;
+		$("#randomNumber").html(randNumber);
+
+		console.log("random number: " + randNumber);
+
+	} // END of pickRandomNumber function
+
+	// pick random numbers for crystals
+
+	function pickRandomCrystals(arr) {
+
+		for (var y = 0; y < 4; y++){
+
+			var a = arr[Math.floor(Math.random() * arr.length)];
+
+			crystalNumbers.push(a);
+		}
+    // check which numbers have been picked
+		console.log("crystal numbers: " + crystalNumbers);
+
+	} // END of pickRandomCrystals function
+
+	function crystalValues(arr) {
+
+		// change value of each crystal button according to array
+		for (i = 0; i < arr.length; i++) {
+
+		$("#button-" + (i+1)).attr("value", arr[i]);
+		console.log(this);
+		}
+		c1 = arr[0];
+		c2 = arr[1];
+		c3 = arr[2];
+		c4 = arr[3];
+	} // END of crystalValues function
+
+	function gameReset(x) {
+
+		crystalNumbers = []; // clears crystal number values
+
+		pickRandomNumber(rand);
+
+		pickRandomCrystals(crystals);
+
+		crystalValues(crystalNumbers);
+
+		totalScore = 0;
+		$("#totalNumber").html(totalScore);
+
+		alert(x);
+	} // END of gameReset function
+
+	// *** GAME SETTINGS AT START ***
+
+	pickRandomNumber(rand); // random number to match
+	pickRandomCrystals(crystals); // array of random crystal values
+	crystalValues(crystalNumbers);
+
+		// crystal button functions
+
+		$("#purplegem").on("click", function() {
+
+			totalScore += c1;
+			$("#totalNumber").html(totalScore);
+		});
+
+		$("#bluegem").on("click", function() {
+
+			totalScore += c2;
+			$("#totalNumber").html(totalScore);
+		});
+
+		$("#greengem").on("click", function() {
+
+			totalScore += c3;
+			$("#totalNumber").html(totalScore);
+		});
+
+		$("#redgem").on("click", function() {
+
+			totalScore += c4;
+			$("#totalNumber").html(totalScore);
+		});
+
+	$("button").on("click", function() {
+		// this is what happens if the user wins
+		if (totalScore == randNumber) {
+
+			wins++;
+			console.log(totalScore);
+			$("#totalNumber").html(totalScore);
+			$("#wins").html("Wins: " + wins);
 
 
-// These on click functions will make it so the if the total score = the random number generated
-// by the RNGenerator then it will run a function called win and reset the game
-$('#purplegem').on('click', function() {
+			setTimeout(function() {gameReset("YOU WIN!!")}, 200);
+		}
 
-    totalScore= totalScore + purplegem;
-    $('#totalScore').html(totalScore);
-    if (totalScore === randomNumber) {
+		else if (totalScore > randNumber){
 
-        win();
-        resetGame();
+			losses++;
+			$("#totalNumber").html(totalScore);
+			$("#losses").html("Losses: " + losses);
 
-    } else if (totalScore > randomNumber) {
+			setTimeout(function() {gameReset("WOMP-WOMP...YOU LOSE!")}, 200);
+		}
+	});
 
-        // Otherwise, if the number goes over the random number, they will lose the game
-        loss();
-        reset();
-
-    }
-
-})
-
-$('#bluegem').on('click', function() {
-
-    totalScore= totalScore + bluegem;
-    $('#totalScore').html(totalScore);
-    if (totalScore === randomNumber) {
-
-        win();
-        resetGame();
-
-    } else if (totalScore > randomNumber) {
-
-        loss();
-        reset();
-
-    }
-
-})
-
-$('#greengem').on('click', function() {
-
-    totalScore= totalScore + greengem;
-    $('#totalScore').html(totalScore);
-    if (totalScore === randomNumber) {
-
-        win();
-        resetGame();
-
-    } else if (totalScore > randomNumber) {
-
-        loss();
-        reset();
-
-    }
-
-})
-
-$('#redgem').on('click', function() {
-
-    totalScore= totalScore + redgem;
-    $('#totalScore').html(totalScore);
-    if (totalScore === randomNumber) {
-
-        win();
-        resetGame();
-
-    } else if (totalScore > randomNumber) {
-
-        loss();
-        reset();
-
-    }
-
-})
-
-})
+}); // end of script
